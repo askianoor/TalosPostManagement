@@ -1,0 +1,29 @@
+.ImageUpload {
+  height: 300px;
+}
+
+.PostImages {
+    padding: 1rem;
+    transition: transform .2s;
+    max-width: 100%;
+    max-height: 200px;
+    margin: 0 auto;
+  }
+  
+  .PostImages:hover {
+    transform: scale(2);
+    position: relative;
+    z-index: 1000;
+  }
+
+.blur{
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+    opacity: 0.7;
+    background: #ccc;
+    display: block;
+    cursor: not-allowed;
+  }

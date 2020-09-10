@@ -1,0 +1,62 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <img src="/assets/Images/image2.png">
+        Talos technical test (Ali Kianoor) - Posts
+        <button class="btn btn-success rounded ml-auto PlusButton" [routerLink]="['/AddPost']" routerLinkActive="router-link-active" >
+          <span class="plusIcon"><fa-icon [icon]="faPlus"></fa-icon></span>
+          <span class="plusText">Add New Post</span>
+        </button>
+    </nb-layout-header>
+
+    <nb-layout-column>
+
+      <span *ngIf="Loading" class="text-center">
+        <img src="/assets/Images/loader.gif">
+      </span>
+
+      <div class="PostsGrid" *ngIf="!Loading">
+          <nb-card *ngFor="let post of Posts" class="col-12 col-md-6 col-lg-3 m-2 animate__animated animate__slideInDown">
+            <nb-card-header class="text-center">
+              <h5>{{post.title | titlecase }}</h5>
+              <img *ngIf="post.photoUrl" class="PostImages" src="{{ApiPath + post.photoUrl}}">      
+              <img *ngIf="!post.photoUrl" class="PostImages" src="/assets/Images/no-image.png">   
+              </nb-card-header>
+            <nb-card-body>
+              
+              <p>{{post.description}}</p>
+                
+            </nb-card-body>
+            <nb-card-footer>
+              <div class="row">
+                <div class="col-6">
+                  <span *ngFor="let tag of post.tags" class="badge badge-pill badge-dark m-1">{{tag | lowercase}}</span>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-info rounded float-right" (click)="ViewPostDetails(post)">
+                    <span>View Post</span>
+                  </button>
+                </div>
+              </div>
+            </nb-card-footer>
+        </nb-card>
+      </div>
+    </nb-layout-column>
+
+    <nb-layout-footer>
+      <div class="col">
+        <p>First Paragraph</p>
+      </div>
+      <div class="col">
+        <p>Second Paragraph</p>
+      </div>
+      <div class="col">
+        <p>Third Paragraph</p>
+      </div>
+      <div class="col">
+        <ul class="list">
+          <li *ngFor="let item of items">{{item}}</li>
+        </ul>
+      </div>
+    </nb-layout-footer>
+
+  </nb-layout>

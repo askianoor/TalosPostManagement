@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.PlusButton { 
+    transition: all 0.5s linear; 
+}
+    .PlusButton .plusText { 
+        display: none; 
+    }
+
+    .PlusButton:hover {
+        transform: scale(1.1);
+    }
+
+        .PlusButton:hover .plusIcon {
+            display: none; 
+        }
+        .PlusButton:hover .plusText { 
+            display: inline; 
+        }

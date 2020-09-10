@@ -1,0 +1,99 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <img src="/assets/Images/image2.png">
+        Talos technical test - Add New Post
+        <button class="btn btn-warning ml-auto" [routerLink]="['/Main']" routerLinkActive="router-link-active" >
+          Go Back to Posts
+        </button>
+    </nb-layout-header>
+
+    <nb-layout-column>
+
+        <form [formGroup]="NewPostForm" (ngSubmit)="onSubmit()">
+            <nb-card status="info" class="animate__animated animate__backInDown">
+                    <nb-card-header>Add New Post</nb-card-header>
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-group p-2">
+                                    <label for="title">Title:</label>
+                                    <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid animate__animated animate__bounce': submitted && f.title.errors }" />
+                                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback animate__animated animate__bounce">
+                                        <div *ngIf="f.title.errors.required">Please enter the title.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group p-2">
+                                    <label for="description">Description:</label>
+                                    <textarea type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid animate__animated animate__bounce': submitted && f.description.errors }"></textarea>
+                                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback animate__animated animate__bounce">
+                                        <div *ngIf="f.description.errors.required">Please enter the description.</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2">
+
+                                    <div class="row form-group form-inline">
+                                        <label for="Tags">Tags:</label>
+                                        <input type="text" [(ngModel)]="tempTag"  [ngModelOptions]="{standalone: true}" class="form-control mx-2" [ngClass]="{ 'is-invalid animate__animated animate__bounce': submitted && f.tags.errors }"/> 
+
+                                        <button type="button" class="m-2 btn btn-primary rounded-pill" (click)="addTag()">Add Tag</button>
+    
+                                        <div *ngIf="submitted && f.tags.errors" class="invalid-feedback animate__animated animate__bounce">
+                                            <div *ngIf="f.tags.errors.required">Please enter at least one tag.</div>
+                                        </div>
+
+                                        <div *ngIf="submitted && f.photoUrl.errors" class="invalid-feedback animate__animated animate__bounce">
+                                            <div *ngIf="f.photoUrl.errors.required">Please select an Image.</div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                          <span *ngFor="let tag of createRequest.tags" class="badge badge-pill badge-dark m-1">{{tag | lowercase}}
+                                            <fa-icon [icon]="faTimes" (click)="removeTag(tag)"></fa-icon>
+                                          </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-lg-6 p-2">
+                                <div class="form-group p-2">
+                                    <label for="ImageUpload">Image:</label>
+                                    <input type="file" class="ml-3 mr-1 mr-auto btn btn-primary rounded-pill display-none" name="photoUrl"  accept="image/*" (change)="onFileSelect($event)" />
+                                </div>
+
+                                <img *ngIf="this.photo" class="ImageUpload" src="{{this.photo}}">
+                                <img *ngIf="!this.photo" class="ImageUpload" src="/assets/Images/no-image.png">
+
+                            </div>
+                        </div>
+                </nb-card-body>
+                <nb-card-footer>
+                    <button type="submit" [disabled]="loading" class="btn btn-success rounded mx-2">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Create Post
+                    </button>
+                </nb-card-footer>
+            </nb-card>
+        </form>
+    </nb-layout-column>
+
+    <nb-layout-footer>
+        <div class="col">
+          <p>First Paragraph</p>
+        </div>
+        <div class="col">
+          <p>Second Paragraph</p>
+        </div>
+        <div class="col">
+          <p>Third Paragraph</p>
+        </div>
+        <div class="col">
+          <ul class="list">
+            <li *ngFor="let item of items">{{item}}</li>
+          </ul>
+        </div>
+      </nb-layout-footer>
+
+</nb-layout>
